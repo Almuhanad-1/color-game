@@ -1,0 +1,49 @@
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10%;
+}
+
+.color-card {
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+  border: 3px white solid;
+  outline: 2px black solid;
+}
+
+.btns-container {
+  margin-top: 15px;
+}
+
+.btn {
+  margin-right: 10px;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-weight: 500;
+  border: 0.5px solid black;
+  border-radius: 5px;
+  height: 40px;
+  line-height: 34px;
+  font-size: 16px;
+  color: #241c15;
+  background-color: #efeeea;
+  transition: background-color 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
+  padding: 0 20px;
+}
+.btn:hover {
+  background-color: #cac9c9;
+}
+.btn:last-child {
+  margin-right: 0;
+}
+
+.report {
+  margin-top: 20px;
+  height: 30px;
+  width: 300px;
+  text-align: center;
+}
