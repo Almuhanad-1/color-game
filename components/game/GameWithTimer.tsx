@@ -27,13 +27,10 @@ export default function GameWithTimer() {
 
   const handleTimer = () => {
     const interval = setInterval(() => {
-      setIntervalId(interval);
-      console.log('timer');
       setTimer((prevTimer) => {
-        // console.log(intervalId, 'from timer');
-
         if (prevTimer <= 1) {
           clearInterval(interval);
+          console.log('interval cleared');
           newQuiz();
         }
         return prevTimer - 1;

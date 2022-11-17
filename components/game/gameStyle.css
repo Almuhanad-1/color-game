@@ -1,4 +1,3 @@
-
 .game-card {
   display: flex;
   flex-direction: column;
@@ -43,7 +42,7 @@
 
 .report {
   margin-top: 20px;
-  height: 30px;
+  height: 50px;
   width: 300px;
   text-align: center;
 }

@@ -6,7 +6,7 @@ export default function Game() {
   const [optionsArr, setOptionsArr] = React.useState([]);
   const [correctAnsCount, setCorrectAnsCount] = React.useState(0);
   const [wrongAnsCount, setWrongAnsCount] = React.useState(0);
-
+  const [nextBtn, setNextBtn] = React.useState(false);
   const reportRef = React.useRef();
 
   const gernerateRandomColor = () => {
@@ -24,6 +24,7 @@ export default function Game() {
   };
 
   const newQuiz = () => {
+    setNextBtn(false);
     const color1 = gernerateRandomColor();
     setMainColor(color1);
     setOptionsArr(
@@ -32,22 +33,24 @@ export default function Game() {
   };
 
   const handleClick = (e) => {
+    if (nextBtn) {
+    }
     if (e.target.innerHTML === `#${mainColor}`) {
       setTimeout(() => {
-        reportRef.current.innerHTML = '';
+        reportRef.current.firstChild.innerHTML = '';
       }, 500);
-      reportRef.current.innerHTML = 'Good Job!';
+      reportRef.current.firstChild.innerHTML = 'Good Job!';
       reportRef.current.style.color = 'green';
       setCorrectAnsCount(correctAnsCount + 1);
       newQuiz();
     } else {
       setTimeout(() => {
-        reportRef.current.innerHTML = '';
+        reportRef.current.firstChild.innerHTML = '';
+        setNextBtn(true);
       }, 500);
-      reportRef.current.innerHTML = 'Wrong Answer!';
+      reportRef.current.firstChild.innerHTML = 'Wrong Answer!';
       reportRef.current.style.color = 'red';
       setWrongAnsCount(wrongAnsCount + 1);
-      newQuiz();
     }
   };
 
@@ -67,13 +70,22 @@ export default function Game() {
             <button
               className={`btn btn${i}`}
               key={ele}
-              onClick={(e) => handleClick(e)}
+              onClick={(e) => (nextBtn ? null : handleClick(e))}
+              style={{ backgroundColor: nextBtn ? `#${ele}` : '#efeeea' }}
             >
               #{ele}
             </button>
           ))}
         </div>
-        <div className="report" ref={reportRef}></div>
+        <div></div>
+        <div className="report" ref={reportRef}>
+          <span></span>
+          {nextBtn && (
+            <button className="btn" onClick={newQuiz}>
+              Next
+            </button>
+          )}
+        </div>
         <div className="results">
           <div className="correct-answer">
             Correct Answers: {correctAnsCount}
